@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Django blog</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="{% url 'home' %}">Djagno blog</a></h1>
+        </header>
+        {% extends 'base.html' %}
+
+        {% block content %}
+        {% for post in post_list %}
+        <div class="post-entry">
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.body }}</p>
+            {% block content %}
+            {% endblock content %}
+        </div>
+        {% endfor %}
+        {% endblock content %}
+    </body>
+</html>
+
+{% extends "base.html" %}
+
+{% block content %}
+{% for post in post_list %}
+<div class="post-entry">
+    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <p>{{ post.body }}</p>
+</div>
+{% endfor %}
+{% endblock content %}
